@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伙伴加成速查 v1.25</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0 30px;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            position: relative;
+            display: inline-block;
+        }
+                       
+        h1 .subtitle {
+            font-size: 1.5rem;
+            color: #7f8c8d;
+            margin-left: 12px;
+            vertical-align: middle;
+        }
+        
+        .author-tag {
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            color: white;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .info-box {
+            background: #3498db;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 0 auto 25px;
+            position: relative;
+            max-width: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .info-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .info-box p {
+            margin: 0 0 15px;
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+        
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .close-btn {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: rotate(90deg);
+        }
+        
+        .notice-list {
+            padding-left: 0;
+            margin: 15px 0 0 0;
+            list-style-type: none;
+        }
+        
+        .notice-list li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 28px;
+            font-size: 0.95rem;
+        }
+        
+        .notice-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #f1c40f;
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+        
+        .filter-container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .filter-container:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: #3498db;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .filter-group label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+        
+        .filter-group label i {
+            margin-right: 8px;
+            color: #3498db;
+        }
+        
+        .search-container {
+            display: flex;
+            position: relative;
+            grid-column: 1 / -1;
+        }
+        
+        .search-container i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7f8c8d;
+        }
+        
+        #search-input {
+            padding: 12px 15px 12px 40px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        
+        #search-input:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        select {
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: white;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237f8c8d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        select:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .reset-filters {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0 20px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            grid-column: 1 / -1;
+            margin-top: 5px;
+            height: 48px;
+        }
+        
+        .reset-filters:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+        
+        .reset-filters i {
+            margin-right: 8px;
+        }
+        
+        .stats-bar {
+            background: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            font-size: 14px;
+        }
+        
+        .stats-highlight {
+            color: #e74c3c;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 0;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-radius: 12px;
+        }
+
+         .table-wrapper {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-top: 10px;
+        }
+
+        thead {
+            position: sticky;
+            z-index: 100;
+            top: 0;
+            display: table-header-group;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            top: 0;
+            right: 15px;
+            background: rgba(52, 152, 219, 0.8);
+            color: white;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            border-bottom-left-radius: 6px;
+            z-index: 10;
+            pointer-events: none;
+            animation: fadeOut 3s ease-out forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            60% { opacity: 1; }
+            100% { opacity: 0; display: none; }
+        }
+        
+        th {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #3498db;
+            color: white;
+            padding: 16px 12px;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        }
+        
+        th:first-child {
+            border-top-left-radius: 12px;
+        }
+        
+        th:last-child {
+            border-top-right-radius: 12px;
+        }
+
+        .sort-icon {
+            display: inline-flex;
+            align-items: center;
+            margin-left: 6px;
+            gap: 4px;
+            user-select: none;
+            font-size: 0.8rem;
+            color: #ccc;
+            pointer-events: none;
+        }
+
+        .sort-icon .arrow-up,
+        .sort-icon .arrow-down {
+            opacity: 0.4;
+            transition: opacity 0.2s, color 0.2s;
+        }
+
+        .sort-icon.asc .arrow-up {
+            color: #fff;
+            opacity: 1;
+        }
+
+        .sort-icon.desc .arrow-down {
+            color: #fff;
+            opacity: 1;
+        }
+        
+        td {
+            border-bottom: 1px solid #eee;
+            padding: 14px 12px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover td {
+            background-color: #f1f9ff;
+        }
+        
+        .rarity-gold {
+            color: #e6b422;
+            font-weight: 700;
+        }
+        
+        .rarity-normal {
+            color: #3498db;
+            font-weight: 700;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px 20px;
+            color: #7f8c8d;
+            font-style: italic;
+            grid-column: 1 / -1;
+        }
+        
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+        }
+        
+        .buff-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .buff-attack { background-color: #ffebee; color: #e53935; }
+        .buff-health { background-color: #e8f5e9; color: #43a047; }
+        .buff-defense { background-color: #e3f2fd; color: #1e88e5; }
+        .buff-speed { background-color: #fff8e1; color: #ffb300; }
+        .buff-damage { background-color: #f3e5f5; color: #8e24aa; }
+        .buff-resist { background-color: #e0f7fa; color: #00acc1; }
+        .buff-crit { background-color: #ffecb3; color: #ff8f00; }
+        .buff-block { background-color: #e8eaf6; color: #3949ab; }
+        .buff-heal { background-color: #f1f8e9; color: #7cb342; }
+        .buff-precision { background-color: #e0f2f1; color: #00897b; }
+        .buff-crit-resist { background-color: #fbe9e7; color: #d84315; }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px 0;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            .filter-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            th, td {
+                padding: 10px 8px;
+                font-size: 14px;
+            }
+
+            th {
+                top: 0;
+            }
+            
+            .stats-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            table {
+                display: table;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .table-wrapper {
+                max-height: 80vh;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                overflow-y: visible;
+            }
+        }      
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            
+            th, td {
+                padding: 8px 6px;
+                font-size: 13px;
+            }
+            
+            select, #search-input {
+                padding: 10px 12px 10px 36px;
+                font-size: 14px;
+            }
+
+            .buff-tag {
+                font-size: 0.75rem;
+                padding: 2px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>伙伴加成速查<span class="subtitle">v1.25</span></h1>
+        <div class="author-tag">完熟土鸡蛋制作</div>
+    </header>
+    
+    <!-- 提示框 -->
+    <div class="info-box" id="infoBox">
+        <button class="close-btn" id="closeBtn">
+            <i class="fas fa-times"></i>
+        </button>
+        <p>Tips：</p>
+        <ul class="notice-list">
+            <li>伙伴无论稀有度如何，每10级好感都会有百分比加成（单个角色好感上限100级）</li>
+            <li>伙伴1、10、30、40、60、80、90级，会有某一四维属性的加成，金品质伙伴为3%，普通品质伙伴为1%，在本工具中统称为主要加成</li>
+            <li>20、50、70、100级加成均为1%</li>
+            <li>本工具为离线文件，分享时请勿分享网页链接</li>
+            <li>数据仅供参考，请以游戏内实际数值为准</li>
+            <li>本工具仅供学习交流，严禁售卖</li>
+        </ul>
+    </div>
+
+    <!-- 筛选选项 -->
+    <div class="filter-container">
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-input" placeholder="搜索伙伴名称...">
+        </div>
+        
+        <div class="filter-group">
+            <label for="city"><i class="fas fa-flag"></i> 国度：</label>
+            <select id="city">
+                <option value="">全部国度</option>
+                <option value="未知">未知</option>
+                <option value="森之国">森之国</option>
+                <option value="山之国">山之国</option>
+                <option value="泽之国">泽之国</option>
+                <option value="龙之国">龙之国</option>
+                <option value="羽之国">羽之国</option>
+                <option value="联动">联动</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <label for="rarity"><i class="fas fa-star"></i> 稀有度：</label>
+            <select id="rarity">
+                <option value="">全部稀有度</option>
+                <option value="普通">普通</option>
+                <option value="金">金</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <label for="gift"><i class="fas fa-gift"></i> 偏好礼物：</label>
+            <select id="gift">
+                <option value="">全部礼物</option>
+                <option value="书">书</option>
+                <option value="花">花</option>
+                <option value="金银珠宝">金银珠宝</option>
+                <option value="日常用品">日常用品</option>                
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="buff"><i class="fas fa-bolt"></i> 加成属性：</label>
+            <select id="buff">
+                <option value="">全部属性</option>
+                <option value="攻击">攻击</option>
+                <option value="生命">生命</option>
+                <option value="防御">防御</option>
+                <option value="速度">速度</option>
+                <option value="伤害加成">伤害加成</option>
+                <option value="伤害抵抗">伤害抵抗</option>
+                <option value="会心率">会心率</option>
+                <option value="格挡率">格挡率</option>
+                <option value="治疗加成">治疗加成</option>
+                <option value="精准">精准</option>
+                <option value="会心抵抗">会心抵抗</option>
+            </select>
+        </div>        
+                
+        <button class="reset-filters" id="reset-btn">
+            <i class="fas fa-sync-alt"></i> 重置所有筛选
+        </button>
+    </div>
+    
+    <div class="stats-bar">
+        <div>找到 <span class="stats-highlight" id="result-count">26</span> 位伙伴</div>
+        <div>点击表头可排序 | 实时筛选已启用</div>
+    </div>
+    
+    <!-- 数据表格 -->
+    <div class="table-wrapper">
+        <!-- <div class="scroll-hint">← 可横向滑动 →</div> -->
+        <table id="partner-table">
+        <thead>
+            <tr>
+                <th>伙伴名称</th>
+                <th>国度</th>
+                <th>稀有度</th>
+                <th>偏好礼物</th>
+                <th>主要加成</th>
+                <th>20级</th>
+                <th>50级</th>
+                <th>70级</th>
+                <th>100级</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 森之国 -->
+            <tr>
+                <td>神秘商人</td>
+                <td>森之国</td>
+                <td class="rarity-gold">金</td>
+                <td>花</td>
+                <td><span class="buff-tag buff-health">生命</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-heal">治疗加成</span></td>
+            </tr>
+            <tr>
+                <td>薇兰</td>
+                <td>森之国</td>
+                <td class="rarity-gold">金</td>
+                <td>花</td>
+                <td><span class="buff-tag buff-speed">速度</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+            </tr>
+            <tr>
+                <td>绯乐</td>
+                <td>森之国</td>
+                <td class="rarity-normal">普通</td>
+                <td>花</td>
+                <td><span class="buff-tag buff-attack">攻击</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-precision">精准</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-precision">精准</span></td>
+            </tr>
+            <tr>
+                <td>森森</td>
+                <td>森之国</td>
+                <td class="rarity-gold">金</td>
+                <td>金银珠宝</td>
+                <td><span class="buff-tag buff-defense">防御</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-block">格挡率</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-block">格挡率</span></td>
+            </tr>
+            <tr>
+                <td>克萝尔</td>
+                <td>森之国</td>
+                <td class="rarity-normal">普通</td>
+                <td>书</td>
+                <td><span class="buff-tag buff-attack">攻击</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-precision">精准</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-precision">精准</span></td>
+            </tr>
+            <tr>
+                <td>基利安</td>
+                <td>森之国</td>
+                <td class="rarity-normal">普通</td>
+                <td>书</td>
+                <td><span class="buff-tag buff-health">生命</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
+            </tr>
+            <tr>
+                <td>赫密斯</td>
+                <td>森之国</td>
+                <td class="rarity-normal">普通</td>
+                <td>金银珠宝</td>
+                <td><span class="buff-tag buff-attack">攻击</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-precision">精准</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-precision">精准</span></td>
+            </tr>
+            <tr>
+                <td>秦</td>
+                <td>森之国</td>
+                <td class="rarity-normal">普通</td>
+                <td>日常用品</td>
+                <td><span class="buff-tag buff-speed">速度</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+            </tr>
+            <tr>
+                <td>村长</td>
+                <td>森之国</td>
+                <td class="rarity-normal">普通</td>
+                <td>日常用品</td>
+                <td><span class="buff-tag buff-health">生命</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
+            </tr>
+            
+            <!-- 山之国 -->
+            <tr>
+                <td>米特</td>
+                <td>山之国</td>
+                <td class="rarity-gold">金</td>
+                <td>书</td>
+                <td><span class="buff-tag buff-speed">速度</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+            </tr>
+            <tr>
+                <td>妮娜</td>
+                <td>山之国</td>
+                <td class="rarity-gold">金</td>
+                <td>花</td>
+                <td><span class="buff-tag buff-speed">速度</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+            </tr>
+            <tr>
+                <td>卡尔</td>
+                <td>山之国</td>
+                <td class="rarity-normal">普通</td>
+                <td>日常用品</td>
+                <td><span class="buff-tag buff-speed">速度</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+            </tr>
+            <tr>
+                <td>帕鲁</td>
+                <td>山之国</td>
+                <td class="rarity-normal">普通</td>
+                <td>金银珠宝</td>
+                <td><span class="buff-tag buff-defense">防御</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-block">格挡率</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-block">格挡率</span></td>
+            </tr>
+            <tr>
+                <td>梅克娜</td>
+                <td>山之国</td>
+                <td class="rarity-normal">普通</td>
+                <td>金银珠宝</td>
+                <td><span class="buff-tag buff-health">生命</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
+            </tr>
+
+            <!-- 泽之国 -->
+            <tr>
+                <td>未央</td>
+                <td>泽之国</td>
+                <td class="rarity-gold">金</td>
+                <td>书</td>
+                <td><span class="buff-tag buff-speed">速度</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+            </tr>
+            <tr>
+                <td>花山铃</td>
+                <td>泽之国</td>
+                <td class="rarity-gold">金</td>
+                <td>金银珠宝</td>
+                <td><span class="buff-tag buff-health">生命</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-heal">治疗加成</span></td>
+            </tr>
+            <tr>
+                <td>大泽荣一</td>
+                <td>泽之国</td>
+                <td class="rarity-normal">普通</td>
+                <td>金银珠宝</td>
+                <td><span class="buff-tag buff-speed">速度</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+            </tr>
+            <tr>
+                <td>十兵卫</td>
+                <td>泽之国</td>
+                <td class="rarity-normal">普通</td>
+                <td>花</td>
+                <td><span class="buff-tag buff-defense">防御</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-block">格挡率</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-block">格挡率</span></td>
+            </tr>
+            <tr>
+                <td>终末</td>
+                <td>泽之国</td>
+                <td class="rarity-normal">普通</td>
+                <td>日常用品</td>
+                <td><span class="buff-tag buff-defense">防御</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-block">格挡率</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-block">格挡率</span></td>
+            </tr>
+
+            <!-- 龙之国 -->
+            <tr>
+                <td>茗</td>
+                <td>龙之国</td>
+                <td class="rarity-gold">金</td>
+                <td>花</td>
+                <td><span class="buff-tag buff-speed">速度</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+            </tr>
+            <tr>
+                <td>岁末</td>
+                <td>龙之国</td>
+                <td class="rarity-gold">金</td>
+                <td>书</td>
+                <td><span class="buff-tag buff-health">生命</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-heal">治疗加成</span></td>
+            </tr>
+            <tr>
+                <td>姜旺</td>
+                <td>龙之国</td>
+                <td class="rarity-normal">普通</td>
+                <td>日常用品</td>
+                <td><span class="buff-tag buff-attack">攻击</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-precision">精准</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-precision">精准</span></td>
+            </tr>
+            <tr>
+                <td>惠</td>
+                <td>龙之国</td>
+                <td class="rarity-normal">普通</td>
+                <td>日常用品</td>
+                <td><span class="buff-tag buff-defense">防御</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-block">格挡率</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-block">格挡率</span></td>
+            </tr>
+            <tr>
+                <td>无忌</td>
+                <td>龙之国</td>
+                <td class="rarity-normal">普通</td>
+                <td>书</td>
+                <td><span class="buff-tag buff-speed">速度</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+            </tr>
+
+            <!-- 羽之国 -->
+            <tr>
+                <td>伊丝娜</td>
+                <td>羽之国</td>
+                <td class="">/</td>
+                <td>/</td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+            </tr>
+            <tr>
+                <td>阿斯特丽德</td>
+                <td>羽之国</td>
+                <td class="">/</td>
+                <td>/</td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+            </tr>
+            <tr>
+                <td>芙蕾雅</td>
+                <td>羽之国</td>
+                <td class="">/</td>
+                <td>/</td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+            </tr>
+            <tr>
+                <td>格鲁德</td>
+                <td>羽之国</td>
+                <td class="">/</td>
+                <td>/</td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+            </tr>
+            <tr>
+                <td>维伽尔</td>
+                <td>羽之国</td>
+                <td class="">/</td>
+                <td>/</td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+            </tr>
+            <tr>
+                <td>奥菲莉娅</td>
+                <td>羽之国</td>
+                <td class="">/</td>
+                <td>/</td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+            </tr>
+            <tr>
+                <td>西尔维亚</td>
+                <td>羽之国</td>
+                <td class="">/</td>
+                <td>/</td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+            </tr>
+            
+
+            <!-- 联动 -->
+            <tr>
+                <td>阿克娅</td>
+                <td>联动</td>
+                <td class="rarity-gold">金</td>
+                <td>金银珠宝</td>
+                <td><span class="buff-tag buff-health">生命</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-heal">治疗加成</span></td>
+            </tr>
+            <tr>
+                <td>惠惠</td>
+                <td>联动</td>
+                <td class="rarity-gold">金</td>
+                <td>书</td>
+                <td><span class="buff-tag buff-speed">速度</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-crit">会心率</span></td>
+            </tr>
+            <tr>
+                <td>达克尼斯</td>
+                <td>联动</td>
+                <td class="rarity-gold">金</td>
+                <td>日常用品</td>
+                <td><span class="buff-tag buff-defense">防御</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-block">格挡率</span></td>
+                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
+                <td><span class="buff-tag buff-block">格挡率</span></td>
+            </tr>
+            <tr>
+                <td>和真</td>
+                <td>联动</td>
+                <td class="rarity-normal">普通</td>
+                <td>日常用品</td>
+                <td><span class="buff-tag buff-attack">攻击</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-precision">精准</span></td>
+                <td><span class="buff-tag buff-damage">伤害加成</span></td>
+                <td><span class="buff-tag buff-precision">精准</span></td>
+            </tr>
+            <tr>
+                <td>洛天依</td>
+                <td>联动</td>
+                <td class="">/</td>
+                <td>/</td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+                <td><span class="buff-tag">/</span></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+    <footer>
+        <p>本工具数据仅供参考，请以游戏内实际数值为准 | 最后更新: 2025年9月19号</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取DOM元素
+            const cityFilter = document.getElementById('city');
+            const rarityFilter = document.getElementById('rarity');
+            const buffFilter = document.getElementById('buff');
+            const giftFilter = document.getElementById('gift');
+            const searchInput = document.getElementById('search-input');
+            const resetBtn = document.getElementById('reset-btn');
+            const tableRows = document.querySelectorAll('#partner-table tbody tr');
+            const closeBtn = document.getElementById('closeBtn');
+            const infoBox = document.getElementById('infoBox');
+            const resultCount = document.getElementById('result-count');
+            
+            // 筛选函数
+            function filterTable() {
+                const cityValue = cityFilter.value;
+                const rarityValue = rarityFilter.value;
+                const buffValue = buffFilter.value;
+                const giftValue = giftFilter.value;
+                const searchValue = searchInput.value.toLowerCase();
+                
+                let visibleCount = 0;
+                let hasResults = false;
+                
+                // 先移除之前可能存在的"无结果"提示行
+                const existingNoResults = document.querySelector('.no-results');
+                if (existingNoResults) {
+                    existingNoResults.remove();
+                }
+                
+                tableRows.forEach(row => {
+                    const name = row.cells[0].textContent.toLowerCase();
+                    const city = row.cells[1].textContent;
+                    const rarity = row.cells[2].textContent;
+                    const gift = row.cells[3].textContent;
+                    const mainBuff = row.cells[4].textContent;
+                    const lv20 = row.cells[5].textContent;
+                    const lv50 = row.cells[6].textContent;
+                    const lv70 = row.cells[7].textContent;
+                    const lv100 = row.cells[8].textContent;
+                    
+                    // 检查搜索条件
+                    const searchMatch = !searchValue || name.includes(searchValue);
+                    // 检查其他筛选条件
+                    const cityMatch = !cityValue || city === cityValue;
+                    const rarityMatch = !rarityValue || rarity === rarityValue;
+                    const giftMatch = !giftValue || gift === giftValue;
+                    const buffMatch = !buffValue ||
+                        mainBuff === buffValue ||
+                        lv20 === buffValue ||
+                        lv50 === buffValue ||
+                        lv70 === buffValue ||
+                        lv100 === buffValue;
+                    
+                    if (searchMatch && cityMatch && rarityMatch && buffMatch && giftMatch) {
+                        row.style.display = '';
+                        visibleCount++;
+                        hasResults = true;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+                
+                // 更新结果计数
+                resultCount.textContent = visibleCount;
+                
+                // 如果没有结果，显示提示
+                if (!hasResults) {
+                    const tbody = document.querySelector('#partner-table tbody');
+                    const tr = document.createElement('tr');
+                    tr.className = 'no-results';
+                    tr.innerHTML = `
+                        <td colspan="9">
+                            <i class="fas fa-search"></i>
+                            <p>没有找到匹配的伙伴</p>
+                            <p>请尝试调整筛选条件</p>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                }
+            }
+            
+            // 事件监听 - 实时筛选
+            cityFilter.addEventListener('change', filterTable);
+            rarityFilter.addEventListener('change', filterTable);
+            giftFilter.addEventListener('change', filterTable);
+            buffFilter.addEventListener('change', filterTable);
+            searchInput.addEventListener('input', filterTable);
+            
+            // 重置按钮事件
+            resetBtn.addEventListener('click', function() {
+                cityFilter.value = '';
+                rarityFilter.value = '';
+                giftFilter.value = '';
+                buffFilter.value = '';
+                searchInput.value = '';
+                filterTable();
+            });
+            
+            // 关闭提示框事件
+            closeBtn.addEventListener('click', function() {
+                infoBox.style.display = 'none';
+            });
+            
+            // 初始筛选
+            filterTable();
+
+            // 表格排序功能（含箭头指示）
+            (function enableTriStateTableSort() {
+                const table = document.getElementById('partner-table');
+                const headers = table.querySelectorAll('th');
+                const tbody = table.querySelector('tbody');
+                const originalRows = Array.from(tbody.querySelectorAll('tr'));
+
+                let currentSortedColumn = null;
+                let sortState = {}; // { columnIndex: 'asc' | 'desc' | null }
+
+                headers.forEach((header, columnIndex) => {
+                    header.style.cursor = 'pointer';
+                    header.title = '点击排序';
+
+                    // 添加箭头容器
+                    const arrowContainer = document.createElement('span');
+                    arrowContainer.className = 'sort-icon';
+                    arrowContainer.innerHTML = `<span class="arrow-up">▲</span><span class="arrow-down">▼</span>`;
+                    header.appendChild(arrowContainer);
+
+                    header.addEventListener('click', () => {
+                        // 切换排序状态
+                        const prevState = sortState[columnIndex] || null;
+                        const newState = prevState === null ? 'asc' : prevState === 'asc' ? 'desc' : null;
+
+                        // 清除所有排序状态
+                        sortState = {};
+                        headers.forEach(h => h.querySelector('.sort-icon')?.classList.remove('asc', 'desc'));
+
+                        if (newState) {
+                            sortState[columnIndex] = newState;
+                            arrowContainer.classList.add(newState);
+                        } else {
+                            // 还原原始顺序
+                            originalRows.forEach(row => tbody.appendChild(row));
+                            return;
+                        }
+
+                        // 获取可见行
+                        const rows = Array.from(tbody.querySelectorAll('tr')).filter(
+                            row => !row.classList.contains('no-results') && row.style.display !== 'none'
+                        );
+
+                        // 排序逻辑
+                        const ascending = newState === 'asc';
+                        rows.sort((a, b) => {
+                            const valA = a.cells[columnIndex].textContent.trim();
+                            const valB = b.cells[columnIndex].textContent.trim();
+                            const aVal = isNaN(valA) ? valA : parseFloat(valA);
+                            const bVal = isNaN(valB) ? valB : parseFloat(valB);
+                            if (aVal < bVal) return ascending ? -1 : 1;
+                            if (aVal > bVal) return ascending ? 1 : -1;
+                            return 0;
+                        });
+
+                        rows.forEach(row => tbody.appendChild(row));
+                    });
+                });
+            })();
+
+
+        });
+        
+    </script>
+</body>
+</html>
