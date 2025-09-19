@@ -121,8 +121,8 @@
             content: "•";
             position: absolute;
             left: 0;
-            top: 50%;
-            transform: translateY(-50%);
+            top: 0.2em;
+            transform: none;
             color: #f1c40f;
             font-size: 1.2rem;
             line-height: 1;
@@ -373,6 +373,36 @@
             background-color: #f1f9ff;
         }
         
+        .city-sen {
+            color: #7cb342;
+            font-weight: 700;
+        }
+
+        .city-shan {
+            color: #9d7a54;
+            font-weight: 700;
+        }
+
+        .city-ze {
+            color: #6576ad;
+            font-weight: 700;
+        }
+
+        .city-long {
+            color: #40887d;
+            font-weight: 700;
+        }
+
+        /* .city-yu {
+            color: #e6b422;
+            font-weight: 700;
+        } */
+
+        .city-link {
+            color: #a967b7;
+            font-weight: 700;
+        }
+
         .rarity-gold {
             color: #e6b422;
             font-weight: 700;
@@ -502,7 +532,12 @@
             <li>伙伴无论稀有度如何，每10级好感都会有百分比加成（单个角色好感上限100级）</li>
             <li>伙伴1、10、30、40、60、80、90级，会有某一四维属性的加成，金品质伙伴为3%，普通品质伙伴为1%，在本工具中统称为主要加成</li>
             <li>20、50、70、100级加成均为1%</li>
-            <li>本工具为离线文件，分享时请勿分享网页链接</li>
+            <li>关于委派加成：
+                <ul class="notice-list">
+                    <li>金伙伴：委派奖励：20、40+3%；大成功：60、80+2%，100+3%</li>
+                    <li>普通伙伴：委派奖励：20、40+2%；大成功：60、80+1.5%，100+2%</li>
+                </ul>
+            </li>
             <li>数据仅供参考，请以游戏内实际数值为准</li>
             <li>本工具仅供学习交流，严禁售卖</li>
         </ul>
@@ -598,7 +633,7 @@
             <!-- 森之国 -->
             <tr>
                 <td>神秘商人</td>
-                <td>森之国</td>
+                <td class="city-sen">森之国</td>
                 <td class="rarity-gold">金</td>
                 <td>花</td>
                 <td><span class="buff-tag buff-health">生命</span></td>
@@ -609,7 +644,7 @@
             </tr>
             <tr>
                 <td>薇兰</td>
-                <td>森之国</td>
+                <td class="city-sen">森之国</td>
                 <td class="rarity-gold">金</td>
                 <td>花</td>
                 <td><span class="buff-tag buff-speed">速度</span></td>
@@ -620,7 +655,7 @@
             </tr>
             <tr>
                 <td>绯乐</td>
-                <td>森之国</td>
+                <td class="city-sen">森之国</td>
                 <td class="rarity-normal">普通</td>
                 <td>花</td>
                 <td><span class="buff-tag buff-attack">攻击</span></td>
@@ -631,7 +666,7 @@
             </tr>
             <tr>
                 <td>森森</td>
-                <td>森之国</td>
+                <td class="city-sen">森之国</td>
                 <td class="rarity-gold">金</td>
                 <td>金银珠宝</td>
                 <td><span class="buff-tag buff-defense">防御</span></td>
@@ -642,7 +677,7 @@
             </tr>
             <tr>
                 <td>克萝尔</td>
-                <td>森之国</td>
+                <td class="city-sen">森之国</td>
                 <td class="rarity-normal">普通</td>
                 <td>书</td>
                 <td><span class="buff-tag buff-attack">攻击</span></td>
@@ -653,7 +688,7 @@
             </tr>
             <tr>
                 <td>基利安</td>
-                <td>森之国</td>
+                <td class="city-sen">森之国</td>
                 <td class="rarity-normal">普通</td>
                 <td>书</td>
                 <td><span class="buff-tag buff-health">生命</span></td>
@@ -664,7 +699,7 @@
             </tr>
             <tr>
                 <td>赫密斯</td>
-                <td>森之国</td>
+                <td class="city-sen">森之国</td>
                 <td class="rarity-normal">普通</td>
                 <td>金银珠宝</td>
                 <td><span class="buff-tag buff-attack">攻击</span></td>
@@ -675,7 +710,7 @@
             </tr>
             <tr>
                 <td>秦</td>
-                <td>森之国</td>
+                <td class="city-sen">森之国</td>
                 <td class="rarity-normal">普通</td>
                 <td>日常用品</td>
                 <td><span class="buff-tag buff-speed">速度</span></td>
@@ -686,7 +721,7 @@
             </tr>
             <tr>
                 <td>村长</td>
-                <td>森之国</td>
+                <td class="city-sen">森之国</td>
                 <td class="rarity-normal">普通</td>
                 <td>日常用品</td>
                 <td><span class="buff-tag buff-health">生命</span></td>
@@ -699,7 +734,7 @@
             <!-- 山之国 -->
             <tr>
                 <td>米特</td>
-                <td>山之国</td>
+                <td class="city-shan">山之国</td>
                 <td class="rarity-gold">金</td>
                 <td>书</td>
                 <td><span class="buff-tag buff-speed">速度</span></td>
@@ -710,7 +745,7 @@
             </tr>
             <tr>
                 <td>妮娜</td>
-                <td>山之国</td>
+                <td class="city-shan">山之国</td>
                 <td class="rarity-gold">金</td>
                 <td>花</td>
                 <td><span class="buff-tag buff-speed">速度</span></td>
@@ -721,7 +756,7 @@
             </tr>
             <tr>
                 <td>卡尔</td>
-                <td>山之国</td>
+                <td class="city-shan">山之国</td>
                 <td class="rarity-normal">普通</td>
                 <td>日常用品</td>
                 <td><span class="buff-tag buff-speed">速度</span></td>
@@ -732,7 +767,7 @@
             </tr>
             <tr>
                 <td>帕鲁</td>
-                <td>山之国</td>
+                <td class="city-shan">山之国</td>
                 <td class="rarity-normal">普通</td>
                 <td>金银珠宝</td>
                 <td><span class="buff-tag buff-defense">防御</span></td>
@@ -743,7 +778,7 @@
             </tr>
             <tr>
                 <td>梅克娜</td>
-                <td>山之国</td>
+                <td class="city-shan">山之国</td>
                 <td class="rarity-normal">普通</td>
                 <td>金银珠宝</td>
                 <td><span class="buff-tag buff-health">生命</span></td>
@@ -756,7 +791,7 @@
             <!-- 泽之国 -->
             <tr>
                 <td>未央</td>
-                <td>泽之国</td>
+                <td class="city-ze">泽之国</td>
                 <td class="rarity-gold">金</td>
                 <td>书</td>
                 <td><span class="buff-tag buff-speed">速度</span></td>
@@ -767,7 +802,7 @@
             </tr>
             <tr>
                 <td>花山铃</td>
-                <td>泽之国</td>
+                <td class="city-ze">泽之国</td>
                 <td class="rarity-gold">金</td>
                 <td>金银珠宝</td>
                 <td><span class="buff-tag buff-health">生命</span></td>
@@ -778,7 +813,7 @@
             </tr>
             <tr>
                 <td>大泽荣一</td>
-                <td>泽之国</td>
+                <td class="city-ze">泽之国</td>
                 <td class="rarity-normal">普通</td>
                 <td>金银珠宝</td>
                 <td><span class="buff-tag buff-speed">速度</span></td>
@@ -789,7 +824,7 @@
             </tr>
             <tr>
                 <td>十兵卫</td>
-                <td>泽之国</td>
+                <td class="city-ze">泽之国</td>
                 <td class="rarity-normal">普通</td>
                 <td>花</td>
                 <td><span class="buff-tag buff-defense">防御</span></td>
@@ -800,7 +835,7 @@
             </tr>
             <tr>
                 <td>终末</td>
-                <td>泽之国</td>
+                <td class="city-ze">泽之国</td>
                 <td class="rarity-normal">普通</td>
                 <td>日常用品</td>
                 <td><span class="buff-tag buff-defense">防御</span></td>
@@ -813,7 +848,7 @@
             <!-- 龙之国 -->
             <tr>
                 <td>茗</td>
-                <td>龙之国</td>
+                <td class="city-long">龙之国</td>
                 <td class="rarity-gold">金</td>
                 <td>花</td>
                 <td><span class="buff-tag buff-speed">速度</span></td>
@@ -824,7 +859,7 @@
             </tr>
             <tr>
                 <td>岁末</td>
-                <td>龙之国</td>
+                <td class="city-long">龙之国</td>
                 <td class="rarity-gold">金</td>
                 <td>书</td>
                 <td><span class="buff-tag buff-health">生命</span></td>
@@ -835,7 +870,7 @@
             </tr>
             <tr>
                 <td>姜旺</td>
-                <td>龙之国</td>
+                <td class="city-long">龙之国</td>
                 <td class="rarity-normal">普通</td>
                 <td>日常用品</td>
                 <td><span class="buff-tag buff-attack">攻击</span></td>
@@ -846,7 +881,7 @@
             </tr>
             <tr>
                 <td>惠</td>
-                <td>龙之国</td>
+                <td class="city-long">龙之国</td>
                 <td class="rarity-normal">普通</td>
                 <td>日常用品</td>
                 <td><span class="buff-tag buff-defense">防御</span></td>
@@ -857,7 +892,7 @@
             </tr>
             <tr>
                 <td>无忌</td>
-                <td>龙之国</td>
+                <td class="city-long">龙之国</td>
                 <td class="rarity-normal">普通</td>
                 <td>书</td>
                 <td><span class="buff-tag buff-speed">速度</span></td>
@@ -870,7 +905,7 @@
             <!-- 羽之国 -->
             <tr>
                 <td>伊丝娜</td>
-                <td>羽之国</td>
+                <td class="city-yu">羽之国</td>
                 <td class="">/</td>
                 <td>/</td>
                 <td><span class="buff-tag">/</span></td>
@@ -881,7 +916,7 @@
             </tr>
             <tr>
                 <td>阿斯特丽德</td>
-                <td>羽之国</td>
+                <td class="city-yu">羽之国</td>
                 <td class="">/</td>
                 <td>/</td>
                 <td><span class="buff-tag">/</span></td>
@@ -892,7 +927,7 @@
             </tr>
             <tr>
                 <td>芙蕾雅</td>
-                <td>羽之国</td>
+                <td class="city-yu">羽之国</td>
                 <td class="">/</td>
                 <td>/</td>
                 <td><span class="buff-tag">/</span></td>
@@ -903,7 +938,7 @@
             </tr>
             <tr>
                 <td>格鲁德</td>
-                <td>羽之国</td>
+                <td class="city-yu">羽之国</td>
                 <td class="">/</td>
                 <td>/</td>
                 <td><span class="buff-tag">/</span></td>
@@ -914,7 +949,7 @@
             </tr>
             <tr>
                 <td>维伽尔</td>
-                <td>羽之国</td>
+                <td class="city-yu">羽之国</td>
                 <td class="">/</td>
                 <td>/</td>
                 <td><span class="buff-tag">/</span></td>
@@ -925,7 +960,7 @@
             </tr>
             <tr>
                 <td>奥菲莉娅</td>
-                <td>羽之国</td>
+                <td class="city-yu">羽之国</td>
                 <td class="">/</td>
                 <td>/</td>
                 <td><span class="buff-tag">/</span></td>
@@ -936,7 +971,7 @@
             </tr>
             <tr>
                 <td>西尔维亚</td>
-                <td>羽之国</td>
+                <td class="city-yu">羽之国</td>
                 <td class="">/</td>
                 <td>/</td>
                 <td><span class="buff-tag">/</span></td>
@@ -950,7 +985,7 @@
             <!-- 联动 -->
             <tr>
                 <td>阿克娅</td>
-                <td>联动</td>
+                <td class="city-link">联动</td>
                 <td class="rarity-gold">金</td>
                 <td>金银珠宝</td>
                 <td><span class="buff-tag buff-health">生命</span></td>
@@ -961,7 +996,7 @@
             </tr>
             <tr>
                 <td>惠惠</td>
-                <td>联动</td>
+                <td class="city-link">联动</td>
                 <td class="rarity-gold">金</td>
                 <td>书</td>
                 <td><span class="buff-tag buff-speed">速度</span></td>
@@ -972,7 +1007,7 @@
             </tr>
             <tr>
                 <td>达克尼斯</td>
-                <td>联动</td>
+                <td class="city-link">联动</td>
                 <td class="rarity-gold">金</td>
                 <td>日常用品</td>
                 <td><span class="buff-tag buff-defense">防御</span></td>
@@ -983,7 +1018,7 @@
             </tr>
             <tr>
                 <td>和真</td>
-                <td>联动</td>
+                <td class="city-link">联动</td>
                 <td class="rarity-normal">普通</td>
                 <td>日常用品</td>
                 <td><span class="buff-tag buff-attack">攻击</span></td>
@@ -994,7 +1029,7 @@
             </tr>
             <tr>
                 <td>洛天依</td>
-                <td>联动</td>
+                <td class="city-link">联动</td>
                 <td class="">/</td>
                 <td>/</td>
                 <td><span class="buff-tag">/</span></td>
