@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>伙伴加成速查 v1.25</title>
+    <title>伙伴加成速查 v1.26</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -44,7 +44,7 @@
             vertical-align: middle;
         }
         
-        .author-tag {
+        .author {
             background: linear-gradient(90deg, #3498db, #2ecc71);
             color: white;
             padding: 3px 12px;
@@ -427,13 +427,18 @@
             color: #e0e0e0;
         }
         
-        .buff-tag {
+        .tag {
             display: inline-block;
             padding: 4px 10px;
             border-radius: 20px;
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 700;
         }
+
+        .gift-shuJi { background-color: #fff3e0; color: #6d3600; }
+        .gift-huaShu { background-color: #fce4ec; color: #ad1457; }
+        .gift-zhuBao { background-color: #fff9c4; color: #daa520; }
+        .gift-chaBei { background-color: #e3f2fd; color: #0d47a1; }
         
         .buff-attack { background-color: #ffebee; color: #e53935; }
         .buff-health { background-color: #e8f5e9; color: #43a047; }
@@ -509,7 +514,7 @@
                 font-size: 14px;
             }
 
-            .buff-tag {
+            .tag {
                 font-size: 0.75rem;
                 padding: 2px 6px;
             }
@@ -518,8 +523,8 @@
 </head>
 <body>
     <header>
-        <h1>伙伴加成速查<span class="subtitle">v1.25</span></h1>
-        <div class="author-tag">完熟土鸡蛋制作</div>
+        <h1>伙伴加成速查<span class="subtitle">v1.26</span></h1>
+        <div class="author">完熟土鸡蛋制作</div>
     </header>
     
     <!-- 提示框 -->
@@ -576,10 +581,10 @@
             <label for="gift"><i class="fas fa-gift"></i> 偏好礼物：</label>
             <select id="gift">
                 <option value="">全部礼物</option>
-                <option value="书">书</option>
-                <option value="花">花</option>
-                <option value="金银珠宝">金银珠宝</option>
-                <option value="日常用品">日常用品</option>                
+                <option value="书籍">书籍</option>
+                <option value="花束">花束</option>
+                <option value="珠宝">珠宝</option>
+                <option value="茶杯">茶杯</option>                
             </select>
         </div>
 
@@ -635,100 +640,100 @@
                 <td>神秘商人</td>
                 <td class="city-sen">森之国</td>
                 <td class="rarity-gold">金</td>
-                <td>花</td>
-                <td><span class="buff-tag buff-health">生命</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-heal">治疗加成</span></td>
+                <td><span class="tag gift-huaShu">花束</span></td>
+                <td><span class="tag buff-health">生命</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-crit-resist">会心抵抗</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-heal">治疗加成</span></td>
             </tr>
             <tr>
                 <td>薇兰</td>
                 <td class="city-sen">森之国</td>
                 <td class="rarity-gold">金</td>
-                <td>花</td>
-                <td><span class="buff-tag buff-speed">速度</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="tag gift-huaShu">花束</span></td>
+                <td><span class="tag buff-speed">速度</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
             </tr>
             <tr>
                 <td>森森</td>
                 <td class="city-sen">森之国</td>
                 <td class="rarity-gold">金</td>
-                <td>金银珠宝</td>
-                <td><span class="buff-tag buff-defense">防御</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-block">格挡率</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-block">格挡率</span></td>
+                <td><span class="tag gift-zhuBao">珠宝</span></td>
+                <td><span class="tag buff-defense">防御</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-block">格挡率</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-block">格挡率</span></td>
             </tr>
             <tr>
                 <td>绯乐</td>
                 <td class="city-sen">森之国</td>
                 <td class="rarity-normal">普通</td>
-                <td>花</td>
-                <td><span class="buff-tag buff-attack">攻击</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-precision">精准</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-precision">精准</span></td>
+                <td><span class="tag gift-huaShu">花束</span></td>
+                <td><span class="tag buff-attack">攻击</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-precision">精准</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-precision">精准</span></td>
             </tr>            
             <tr>
                 <td>克萝尔</td>
                 <td class="city-sen">森之国</td>
                 <td class="rarity-normal">普通</td>
-                <td>书</td>
-                <td><span class="buff-tag buff-attack">攻击</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-precision">精准</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-precision">精准</span></td>
+                <td><span class="tag gift-shuJi">书籍</span></td>
+                <td><span class="tag buff-attack">攻击</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-precision">精准</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-precision">精准</span></td>
             </tr>
             <tr>
                 <td>基利安</td>
                 <td class="city-sen">森之国</td>
                 <td class="rarity-normal">普通</td>
-                <td>书</td>
-                <td><span class="buff-tag buff-health">生命</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
+                <td><span class="tag gift-shuJi">书籍</span></td>
+                <td><span class="tag buff-health">生命</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-crit-resist">会心抵抗</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-crit-resist">会心抵抗</span></td>
             </tr>
             <tr>
                 <td>赫密斯</td>
                 <td class="city-sen">森之国</td>
                 <td class="rarity-normal">普通</td>
-                <td>金银珠宝</td>
-                <td><span class="buff-tag buff-attack">攻击</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-precision">精准</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-precision">精准</span></td>
+                <td><span class="tag gift-zhuBao">珠宝</span></td>
+                <td><span class="tag buff-attack">攻击</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-precision">精准</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-precision">精准</span></td>
             </tr>
             <tr>
                 <td>秦</td>
                 <td class="city-sen">森之国</td>
                 <td class="rarity-normal">普通</td>
-                <td>日常用品</td>
-                <td><span class="buff-tag buff-speed">速度</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="tag gift-chaBei">茶杯</span></td>
+                <td><span class="tag buff-speed">速度</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
             </tr>
             <tr>
                 <td>村长</td>
                 <td class="city-sen">森之国</td>
                 <td class="rarity-normal">普通</td>
-                <td>日常用品</td>
-                <td><span class="buff-tag buff-health">生命</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
+                <td><span class="tag gift-chaBei">茶杯</span></td>
+                <td><span class="tag buff-health">生命</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-crit-resist">会心抵抗</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-crit-resist">会心抵抗</span></td>
             </tr>
             
             <!-- 山之国 -->
@@ -736,56 +741,56 @@
                 <td>米特</td>
                 <td class="city-shan">山之国</td>
                 <td class="rarity-gold">金</td>
-                <td>书</td>
-                <td><span class="buff-tag buff-speed">速度</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="tag gift-shuJi">书籍</span></td>
+                <td><span class="tag buff-speed">速度</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
             </tr>
             <tr>
                 <td>妮娜</td>
                 <td class="city-shan">山之国</td>
                 <td class="rarity-gold">金</td>
-                <td>花</td>
-                <td><span class="buff-tag buff-speed">速度</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="tag gift-huaShu">花束</span></td>
+                <td><span class="tag buff-speed">速度</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
             </tr>
             <tr>
                 <td>卡尔</td>
                 <td class="city-shan">山之国</td>
                 <td class="rarity-normal">普通</td>
-                <td>日常用品</td>
-                <td><span class="buff-tag buff-speed">速度</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="tag gift-chaBei">茶杯</span></td>
+                <td><span class="tag buff-speed">速度</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
             </tr>
             <tr>
                 <td>帕鲁</td>
                 <td class="city-shan">山之国</td>
                 <td class="rarity-normal">普通</td>
-                <td>金银珠宝</td>
-                <td><span class="buff-tag buff-defense">防御</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-block">格挡率</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-block">格挡率</span></td>
+                <td><span class="tag gift-zhuBao">珠宝</span></td>
+                <td><span class="tag buff-defense">防御</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-block">格挡率</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-block">格挡率</span></td>
             </tr>
             <tr>
                 <td>梅克娜</td>
                 <td class="city-shan">山之国</td>
                 <td class="rarity-normal">普通</td>
-                <td>金银珠宝</td>
-                <td><span class="buff-tag buff-health">生命</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
+                <td><span class="tag gift-zhuBao">珠宝</span></td>
+                <td><span class="tag buff-health">生命</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-crit-resist">会心抵抗</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-crit-resist">会心抵抗</span></td>
             </tr>
 
             <!-- 泽之国 -->
@@ -793,56 +798,56 @@
                 <td>未央</td>
                 <td class="city-ze">泽之国</td>
                 <td class="rarity-gold">金</td>
-                <td>书</td>
-                <td><span class="buff-tag buff-speed">速度</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="tag gift-shuJi">书籍</span></td>
+                <td><span class="tag buff-speed">速度</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
             </tr>
             <tr>
                 <td>花山铃</td>
                 <td class="city-ze">泽之国</td>
                 <td class="rarity-gold">金</td>
-                <td>金银珠宝</td>
-                <td><span class="buff-tag buff-health">生命</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-heal">治疗加成</span></td>
+                <td><span class="tag gift-zhuBao">珠宝</span></td>
+                <td><span class="tag buff-health">生命</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-crit-resist">会心抵抗</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-heal">治疗加成</span></td>
             </tr>
             <tr>
                 <td>大泽荣一</td>
                 <td class="city-ze">泽之国</td>
                 <td class="rarity-normal">普通</td>
-                <td>金银珠宝</td>
-                <td><span class="buff-tag buff-speed">速度</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="tag gift-zhuBao">珠宝</span></td>
+                <td><span class="tag buff-speed">速度</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
             </tr>
             <tr>
                 <td>十兵卫</td>
                 <td class="city-ze">泽之国</td>
                 <td class="rarity-normal">普通</td>
-                <td>花</td>
-                <td><span class="buff-tag buff-defense">防御</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-block">格挡率</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-block">格挡率</span></td>
+                <td><span class="tag gift-huaShu">花束</span></td>
+                <td><span class="tag buff-defense">防御</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-block">格挡率</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-block">格挡率</span></td>
             </tr>
             <tr>
                 <td>终末</td>
                 <td class="city-ze">泽之国</td>
                 <td class="rarity-normal">普通</td>
-                <td>日常用品</td>
-                <td><span class="buff-tag buff-defense">防御</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-block">格挡率</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-block">格挡率</span></td>
+                <td><span class="tag gift-chaBei">茶杯</span></td>
+                <td><span class="tag buff-defense">防御</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-block">格挡率</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-block">格挡率</span></td>
             </tr>
 
             <!-- 龙之国 -->
@@ -850,200 +855,166 @@
                 <td>茗</td>
                 <td class="city-long">龙之国</td>
                 <td class="rarity-gold">金</td>
-                <td>花</td>
-                <td><span class="buff-tag buff-speed">速度</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="tag gift-huaShu">花束</span></td>
+                <td><span class="tag buff-speed">速度</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
             </tr>
             <tr>
                 <td>岁末</td>
                 <td class="city-long">龙之国</td>
                 <td class="rarity-gold">金</td>
-                <td>书</td>
-                <td><span class="buff-tag buff-health">生命</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-heal">治疗加成</span></td>
+                <td><span class="tag gift-shuJi">书籍</span></td>
+                <td><span class="tag buff-health">生命</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-crit-resist">会心抵抗</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-heal">治疗加成</span></td>
             </tr>
             <tr>
                 <td>姜旺</td>
                 <td class="city-long">龙之国</td>
                 <td class="rarity-normal">普通</td>
-                <td>日常用品</td>
-                <td><span class="buff-tag buff-attack">攻击</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-precision">精准</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-precision">精准</span></td>
+                <td><span class="tag gift-chaBei">茶杯</span></td>
+                <td><span class="tag buff-attack">攻击</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-precision">精准</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-precision">精准</span></td>
             </tr>
             <tr>
                 <td>惠</td>
                 <td class="city-long">龙之国</td>
                 <td class="rarity-normal">普通</td>
-                <td>日常用品</td>
-                <td><span class="buff-tag buff-defense">防御</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-block">格挡率</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-block">格挡率</span></td>
+                <td><span class="tag gift-chaBei">茶杯</span></td>
+                <td><span class="tag buff-defense">防御</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-block">格挡率</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-block">格挡率</span></td>
             </tr>
             <tr>
                 <td>无忌</td>
                 <td class="city-long">龙之国</td>
                 <td class="rarity-normal">普通</td>
-                <td>书</td>
-                <td><span class="buff-tag buff-speed">速度</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="tag gift-shuJi">书籍</span></td>
+                <td><span class="tag buff-speed">速度</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
             </tr>
 
             <!-- 羽之国 -->
             <tr>
+                <td>芙蕾雅</td>
+                <td class="city-yu">羽之国</td>
+                <td class="rarity-gold">金</td>
+                <td>/</td>
+                <td><span class="tag">/</span></td>
+                <td><span class="tag">/</span></td>
+                <td><span class="tag">/</span></td>
+                <td><span class="tag">/</span></td>
+                <td><span class="tag">/</span></td>
+            </tr>
+            <tr>
                 <td>伊丝娜</td>
                 <td class="city-yu">羽之国</td>
-                <td class="">/</td>
+                <td class="rarity-normal">普通</td>
                 <td>/</td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
+                <td><span class="tag">/</span></td>
+                <td><span class="tag">/</span></td>
+                <td><span class="tag">/</span></td>
+                <td><span class="tag">/</span></td>
+                <td><span class="tag">/</span></td>
             </tr>
             <tr>
                 <td>阿斯特丽德</td>
                 <td class="city-yu">羽之国</td>
-                <td class="">/</td>
+                <td class="rarity-normal">普通</td>
                 <td>/</td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-            </tr>
-            <tr>
-                <td>芙蕾雅</td>
-                <td class="city-yu">羽之国</td>
-                <td class="">/</td>
-                <td>/</td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
+                <td><span class="tag">/</span></td>
+                <td><span class="tag">/</span></td>
+                <td><span class="tag">/</span></td>
+                <td><span class="tag">/</span></td>
+                <td><span class="tag">/</span></td>
             </tr>
             <tr>
                 <td>格鲁德</td>
                 <td class="city-yu">羽之国</td>
-                <td class="">/</td>
+                <td class="rarity-normal">普通</td>
                 <td>/</td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
+                <td><span class="tag">/</span></td>
+                <td><span class="tag">/</span></td>
+                <td><span class="tag">/</span></td>
+                <td><span class="tag">/</span></td>
+                <td><span class="tag">/</span></td>
             </tr>
-            <tr>
-                <td>维伽尔</td>
-                <td class="city-yu">羽之国</td>
-                <td class="">/</td>
-                <td>/</td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-            </tr>
-            <tr>
-                <td>奥菲莉娅</td>
-                <td class="city-yu">羽之国</td>
-                <td class="">/</td>
-                <td>/</td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-            </tr>
-            <tr>
-                <td>西尔维亚</td>
-                <td class="city-yu">羽之国</td>
-                <td class="">/</td>
-                <td>/</td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-            </tr>
-            
 
             <!-- 联动 -->
             <tr>
                 <td>阿克娅</td>
                 <td class="city-link">联动</td>
                 <td class="rarity-gold">金</td>
-                <td>金银珠宝</td>
-                <td><span class="buff-tag buff-health">生命</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-crit-resist">会心抵抗</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-heal">治疗加成</span></td>
+                <td><span class="tag gift-zhuBao">珠宝</span></td>
+                <td><span class="tag buff-health">生命</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-crit-resist">会心抵抗</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-heal">治疗加成</span></td>
             </tr>
             <tr>
                 <td>惠惠</td>
                 <td class="city-link">联动</td>
                 <td class="rarity-gold">金</td>
-                <td>书</td>
-                <td><span class="buff-tag buff-speed">速度</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-crit">会心率</span></td>
+                <td><span class="tag gift-shuJi">书籍</span></td>
+                <td><span class="tag buff-speed">速度</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-crit">会心率</span></td>
             </tr>
             <tr>
                 <td>达克尼斯</td>
                 <td class="city-link">联动</td>
                 <td class="rarity-gold">金</td>
-                <td>日常用品</td>
-                <td><span class="buff-tag buff-defense">防御</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-block">格挡率</span></td>
-                <td><span class="buff-tag buff-resist">伤害抵抗</span></td>
-                <td><span class="buff-tag buff-block">格挡率</span></td>
+                <td><span class="tag gift-chaBei">茶杯</span></td>
+                <td><span class="tag buff-defense">防御</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-block">格挡率</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-block">格挡率</span></td>
             </tr>
             <tr>
                 <td>和真</td>
                 <td class="city-link">联动</td>
                 <td class="rarity-normal">普通</td>
-                <td>日常用品</td>
-                <td><span class="buff-tag buff-attack">攻击</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-precision">精准</span></td>
-                <td><span class="buff-tag buff-damage">伤害加成</span></td>
-                <td><span class="buff-tag buff-precision">精准</span></td>
+                <td><span class="tag gift-chaBei">茶杯</span></td>
+                <td><span class="tag buff-attack">攻击</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-precision">精准</span></td>
+                <td><span class="tag buff-damage">伤害加成</span></td>
+                <td><span class="tag buff-precision">精准</span></td>
             </tr>
             <tr>
                 <td>洛天依</td>
                 <td class="city-link">联动</td>
-                <td class="">/</td>
-                <td>/</td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
-                <td><span class="buff-tag">/</span></td>
+                <td class="rarity-gold">金</td>
+                <td><span class="tag gift-chaBei">茶杯</span></td>
+                <td><span class="tag buff-health">生命</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-crit-resist">会心抵抗</span></td>
+                <td><span class="tag buff-resist">伤害抵抗</span></td>
+                <td><span class="tag buff-heal">治疗加成</span></td>
             </tr>
         </tbody>
     </table>
     </div>
 
     <footer>
-        <p>本工具数据仅供参考，请以游戏内实际数值为准 | 最后更新: 2025年9月19号</p>
+        <p>本工具数据仅供参考，请以游戏内实际数值为准 | 最后更新: 2025年9月21号</p>
     </footer>
 
     <script>
