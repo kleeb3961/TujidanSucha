@@ -613,7 +613,7 @@
     
     <!-- 表格提示 -->
     <div class="stats-bar">
-        <div>找到 <span class="stats-highlight" id="result-count">26</span> 位伙伴</div>
+        <div>找到 <span class="stats-highlight" id="result-count">37</span> 位伙伴</div>
         <div>点击表头可排序 | 实时筛选已启用</div>
     </div>
     
@@ -923,7 +923,7 @@
                 <td>芙蕾雅</td>
                 <td class="city-yu">羽之国</td>
                 <td class="rarity-gold">金</td>
-                <td class="gift-chaBei">茶杯</td>
+                <td><span class="gift-chaBei">茶杯</span></td>
                 <td><span class="tag buff-speed">速度</span></td>
                 <td><span class="tag buff-damage">伤害加成</span></td>
                 <td><span class="tag buff-crit">会心率</span></td>
@@ -935,11 +935,11 @@
                 <td class="city-yu">羽之国</td>
                 <td class="rarity-gold">金</td>
                 <td><span class="gift-zhuBao">珠宝</span></td>
+                <td><span class="tag buff-speed">速度</span></td>
                 <td><span class="tag buff-damage">伤害加成</span></td>
                 <td><span class="tag buff-crit">会心率</span></td>
                 <td><span class="tag buff-damage">伤害加成</span></td>
                 <td><span class="tag buff-crit">会心率</span></td>
-            </tr>
             </tr>
             <tr>
                 <td>奥菲莉娅</td>
@@ -956,7 +956,7 @@
                 <td>伊丝娜</td>
                 <td class="city-yu">羽之国</td>
                 <td class="rarity-normal">普通</td>
-                <td class="gift-huaShu">花束</td>
+                <td><span class="gift-huaShu">花束</span></td>
                 <td><span class="tag buff-health">生命</span></td>
                 <td><span class="tag buff-resist">伤害抵抗</span></td>
                 <td><span class="tag buff-crit-resist">会心抵抗</span></td>
@@ -967,7 +967,7 @@
                 <td>阿斯特丽德</td>
                 <td class="city-yu">羽之国</td>
                 <td class="rarity-normal">普通</td>
-                <td class="gift-huaShu">花束</td>
+                <td><span class="gift-huaShu">花束</span></td>
                 <td><span class="tag buff-health">生命</span></td>
                 <td><span class="tag buff-resist">伤害抵抗</span></td>
                 <td><span class="tag buff-crit-resist">会心抵抗</span></td>
@@ -978,7 +978,7 @@
                 <td>格鲁德</td>
                 <td class="city-yu">羽之国</td>
                 <td class="rarity-normal">普通</td>
-                <td class="gift-chaBei">茶杯</td>
+                <td><span class="gift-chaBei">茶杯</span></td>
                 <td><span class="tag buff-speed">速度</span></td>
                 <td><span class="tag buff-damage">伤害加成</span></td>
                 <td><span class="tag buff-crit">会心率</span></td>
@@ -1093,15 +1093,15 @@
                 }
                 
                 tableRows.forEach(row => {
-                    const name = row.cells[0].textContent.toLowerCase();
-                    const city = row.cells[1].textContent;
-                    const rarity = row.cells[2].textContent;
-                    const gift = row.cells[3].textContent;
-                    const mainBuff = row.cells[4].textContent;
-                    const lv20 = row.cells[5].textContent;
-                    const lv50 = row.cells[6].textContent;
-                    const lv70 = row.cells[7].textContent;
-                    const lv100 = row.cells[8].textContent;
+                    const name = row.cells[0].textContent.toLowerCase().trim();
+                    const city = row.cells[1].textContent.trim();
+                    const rarity = row.cells[2].textContent.trim();
+                    const gift = row.cells[3].textContent.trim();
+                    const mainBuff = row.cells[4].textContent.trim();
+                    const lv20 = row.cells[5].textContent.trim();
+                    const lv50 = row.cells[6].textContent.trim();
+                    const lv70 = row.cells[7].textContent.trim();
+                    const lv100 = row.cells[8].textContent.trim();
                     
                     // 检查搜索条件
                     const searchMatch = !searchValue || name.includes(searchValue);
@@ -1229,9 +1229,18 @@
                 });
             })();
 
+            const table = document.getElementById('partner-table');
+            const rows = table.querySelectorAll('tbody tr');
 
-        });
-        
+            rows.forEach((row, index) => {
+                const tdCount = row.querySelectorAll('td').length;
+                if (tdCount !== 9) {
+                    console.warn(`⚠️ 第 ${index + 1} 行的 <td> 数量是 ${tdCount}，应为 9`);
+                    // 给这行加个背景色方便肉眼排查
+                    row.style.backgroundColor = '#ffe0e0';
+                }
+            });
+        });        
     </script>
 </body>
 </html>
